@@ -303,12 +303,39 @@
                                     <img class="img-fluid rounded mb-5" src="assets/img/portfolio/cake.png" alt="" />
                                     <!-- Portfolio Modal - Text-->
                                     <h3>Objective</h3>
-                                    <p>The Artemis board and a computer are capable of low-latency, moderate-throughput wireless communication via Bluetooth LE. In this lab, you will expand a basic application for wireless communication over a Generic Attribute (GATT) framework on top of robust BLE stacks.</p>
+                                    <p class="text-left">The Artemis board and a computer are capable of low-latency, moderate-throughput wireless communication via Bluetooth LE. In this lab, you will expand a basic application for wireless communication over a Generic Attribute (GATT) framework on top of robust BLE stacks.</p>
                                     <h3>Ping Your Robot</h3>
-                                    <p class="mb-5">After getting a reliable bluetooth connection, the round-trip latency of the link was tested.  After changing a few lines in main.py and running it, the VM terminal output the response time for sending messages to the Artemis board over bluetooth.</p>
+                                    <p class="text-left">After getting a reliable bluetooth connection, the round-trip latency of the link was tested.  After changing a few lines in main.py and running it, the VM terminal output the response time for sending messages to the Artemis board over bluetooth.</p>
                                     <img class="img-fluid img-centered" src="assets/img/portfolio/pongOutput.png">
-                                    <p>The latency of the messages is most commonly between 18 and 21 ms, although some bytes are sent and received in as little as 16 ms and as long as 25 ms.</p>
+                                    <p class="text-left">The latency of the wireless messages was most commonly between 180 and 210 ms, although some bytes were sent and received in as little as 160 ms and as much as 250 ms.</p>
+                                    <p class="text-left">To test the latency of a wired serial connection, a short script was written in Arduino and another in Matlab.  The Arduino script waits to receive a 'ping' char over a serial port set at 115200 baud/s before sending a 'pong' char in response.</p>
+                                    <br><br><code>void setup() {
+                                      Serial.begin(115200);
+                                    }
 
+                                    void loop() {
+                                      while (Serial.available()) {
+                                        if (Serial.read() == 'p') {
+                                          Serial.println('r');
+                                        }
+                                      }
+                                    }</code>
+                                    <p class = "text-left"> The Matlab script logs the time between sending the initial 'ping' and finishing parsing the response from the Artemis.</p>
+                                    <br><br>
+                                    <code>s = serialport("COM7",115200);
+                                    configureTerminator(s,"CR");
+                                    tListen = 5;
+                                    tResponse = zeros(100,1);
+
+                                    for i = 1:1000
+                                        write(s,'p','char');
+                                            tic
+
+                                        msg = readline(s);
+                                        tResponse(i) = toc;
+                                    end</code>
+                                    <img class="img-fluid img-centered" src="assets/img/portfolio/pongOutputWired.png">
+                                    <p class="text-left">The latency of a wired serial connection over 1000 trials was similar to that of the Bluetooth connection.  The round-trip latency for sending a single char and then parsing the response averaged 170ms with messages being sent as quickly as 50ms andas slow as 350ms.</p>
                                     <button class="btn btn-primary" data-dismiss="modal">
                                         <i class="fas fa-times fa-fw"></i>
                                         Close Window
