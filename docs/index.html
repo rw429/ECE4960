@@ -309,18 +309,19 @@
                                     <img class="img-fluid img-centered" src="assets/img/portfolio/pongOutput.png">
                                     <p class="text-left">The latency of the wireless messages was most commonly between 180 and 210 ms, although some bytes were sent and received in as little as 160 ms and as much as 250 ms.</p>
                                     <p class="text-left">To test the latency of a wired serial connection, a short script was written in Arduino and another in Matlab.  The Arduino script waits to receive a 'ping' char over a serial port set at 115200 baud/s before sending a 'pong' char in response.
-                                    <br><code>
-                                      while (Serial.available()) {                          //wait for ping<br>
-                                        if (Serial.read() == 'p') {Serial.println('r');}    //send response<br>
-                                        }</code></p>
+                                    <br><br><code>
+                                    while (Serial.available()) {                        //wait for ping<br>
+                                        if (Serial.read() == 'p') Serial.println('r');  //send response<br>
+                                    }</code></p>
                                     <p class = "text-left"> The Matlab script logs the time between sending the initial 'ping' and finishing parsing the response from the Artemis.
-                                    <br><code>
+                                    <br><br><code>
                                     write(s,'p','char');    %send char<br>
                                     tic                     %start timer<br>
                                     msg = readline(s);      %wait for response and read it<br>
                                     tResponse(i) = toc;     %stop timer and save<br></code> </p>
                                     <img class="img-fluid img-centered" src="assets/img/portfolio/pongOutputWired.png">
                                     <p class="text-left">The latency of a wired serial connection over 1000 trials was significantly lower compared to that of the Bluetooth connection.  The round-trip latency for sending a single char and then parsing the response averaged 17ms with messages being sent as quickly as 5ms and as slow as 35ms.</p>
+                                    <p class="text-left">To check how many bytes are in the data packet, <code>Serial.println(l_Rcvd);</code> was added in the Arduino script after the other print statements where the variable we are printing is the total length of the packet we are sending in bytes.  It continuously printed 99, indicating the pnp-pong message was sending a full packet back and forth every time.</p>
                                     <button class="btn btn-primary" data-dismiss="modal">
                                         <i class="fas fa-times fa-fw"></i>
                                         Close Window
