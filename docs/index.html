@@ -232,7 +232,21 @@
                                     <!-- Portfolio Modal - Image-->
                                     <img class="img-fluid rounded mb-5" src="assets/img/portfolio/cabin.png" alt="" />
                                     <!-- Portfolio Modal - Text-->
-                                    <p class="mb-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia neque assumenda ipsam nihil, molestias magnam, recusandae quos quis inventore quisquam velit asperiores, vitae? Reprehenderit soluta, eos quod consequuntur itaque. Nam.</p>
+                                    <h3>Objective</h3>
+                                    <p class="mb-5">The purpose of this lab is to setup and become familiar with the Arduino IDE and the Artemis board. After this lab, I will be able to program my board, blink the LED, read/write serial messages over USB, display the output from the onboard temperature sensor, measure the loudest frequency recorded by the Pulse Density Microphone, and run the board using a battery instead of my computer.</p>
+                                    <p class="mb-5">The first part of lab 1 was simple because I already have the Arduino IDE installed on my computer and am familiar with how these devices work.  I uploaded the “Blink” sketch from the examples folder to ensure that sketches could be uploaded to the Artemis.  From previous experience, I know that it is successful when the RX and TX lights on the Artemis blink rapidly while the sketch is uploading.  To double check that the code was working properly, I changed the timing of the blinking, uploaded the new sketch, and observed the light blinking faster as expected.</p>
+                                    <img class="img-fluid img-centered" src="assets/img/portfolio/blink.PNG">
+                                    <p class="mb-5">The “Serial” example worked as expected, parsing inputs to the Artemis and using those inputs to display messages on the Serial Monitor.  I had to change the baud rate to view them properly.</p>
+                                    <img class="img-fluid img-centered" src="assets/img/portfolio/serial.PNG">
+                                    <p class="mb-5">The “analogRead” example worked as well, although the functionality of the sketch was not fully realized.  The temperature sensor reported gradually higher temperatures as I held my thumb to the board.  However, the pin being read as an analog input was floating as it was not grounded or connected to an input, as expected.</p>
+                                    <img class="img-fluid img-centered" src="assets/img/portfolio/temp1.PNG">
+                                    <img class="img-fluid img-centered" src="assets/img/portfolio/temp2.PNG">
+                                    <p class="mb-5">The “microphoneOutput” example sketch also worked as described, returning the frequency of the loudest sound.  When whistling loudly, I could change the output on the serial monitor by changing the pitch of my whistling in a range from 100 to 2500.</p>
+                                    <img class="img-fluid img-centered" src="assets/img/portfolio/mic1.PNG">
+                                    <img class="img-fluid img-centered" src="assets/img/portfolio/mic2.PNG">
+                                    <p class="mb-5">To test the battery, I inserted an “if” statement to turn on the onboard LED (pin 19) if the loudest frequency was above 2000 and turn it off otherwise.  I also had to set pin 19 as an output in the setup function.  This modification to the sketch worked as expected.  I could whistle a low tune while watching the serial monitor, slowly raise the output above 2000, and watch the LED turn on.</p>
+                                    <img class="img-fluid img-centered" src="assets/img/portfolio/mic3.PNG">
+                                    <p class="mb-5">I also unplugged the Artemis from the USB cable and plugged in the battery.  The power LED turned on, indicating the sketch was probably running.  I tested the sketch with whistling again, this time with no serial monitor to check the frequency.  Again, the LED turned on when I whistled a high enough frequency and turned off when it was below the threshold.</p>
                                     <button class="btn btn-primary" data-dismiss="modal">
                                         <i class="fas fa-times fa-fw"></i>
                                         Close Window
