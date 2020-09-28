@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>Freelancer - Start Bootstrap Theme</title>
+        <title>Fast Robots - ECE 4960</title>
         <!-- Favicon-->
         <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico" />
         <!-- Font Awesome icons (free version)-->
@@ -15,6 +15,7 @@
         <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="css/styles.css" rel="stylesheet" />
+        <script type="text/javascript" src="http://latex.codecogs.com/latexit.js"></script>
     </head>
     <body id="page-top">
         <!-- Navigation-->
@@ -93,6 +94,7 @@
                                 <div class="portfolio-item-caption-content text-center text-white"><i class="fas fa-plus fa-3x"></i></div>
                             </div>
                             <img class="img-fluid" src="assets/img/portfolio/circus.png" alt="" />
+                            <p>For this lab, I got some experience with the limitations of the cars acceleration, traction, battery life, etc.</p>
                         </div>
                     </div>
                     <!-- Portfolio Item 4-->
@@ -154,20 +156,18 @@
             </div>
         </section>
         <!-- Contact Section-->
+        <!--
         <section class="page-section" id="contact">
             <div class="container">
-                <!-- Contact Section Heading-->
                 <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Contact Me</h2>
-                <!-- Icon Divider-->
                 <div class="divider-custom">
                     <div class="divider-custom-line"></div>
                     <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
                     <div class="divider-custom-line"></div>
                 </div>
-                <!-- Contact Section Form-->
                 <div class="row">
                     <div class="col-lg-8 mx-auto">
-                        <!-- To configure the contact form email address, go to mail/contact_me.php and update the email address in the PHP file on line 19.-->
+                        <-- To configure the contact form email address, go to mail/contact_me.php and update the email address in the PHP file on line 19.
                         <form id="contactForm" name="sentMessage" novalidate="novalidate">
                             <div class="control-group">
                                 <div class="form-group floating-label-form-group controls mb-0 pb-2">
@@ -205,6 +205,7 @@
                 </div>
             </div>
         </section>
+    -->
         <!-- Scroll to Top Button (Only visible on small and extra-small screen sizes)-->
         <div class="scroll-to-top d-lg-none position-fixed">
             <a class="js-scroll-trigger d-block text-center text-white rounded" href="#page-top"><i class="fa fa-chevron-up"></i></a>
@@ -336,7 +337,7 @@
                             <div class="row justify-content-center">
                                 <div class="col-lg-8">
                                     <!-- Portfolio Modal - Title-->
-                                    <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0" id="portfolioModal3Label">Lab 3: The RC Car</h2>
+                                    <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0" id="portfolioModal3Label">Lab 3: Characterizing the Car</h2>
                                     <!-- Icon Divider-->
                                     <div class="divider-custom">
                                         <div class="divider-custom-line"></div>
@@ -346,7 +347,48 @@
                                     <!-- Portfolio Modal - Image-->
                                     <img class="img-fluid rounded mb-5" src="assets/img/portfolio/circus.png" alt="" />
                                     <!-- Portfolio Modal - Text-->
-                                    <p class="mb-5">Coming Soon...</p>
+                                    <h3>Objective</h3>
+                                    <p class="text-left">Before we start taking the car apart, we can leverage the remote control to familiarize ourselves with the capabilities of the hardware. In later labs we will seek to replicate manual behavior with autonomous control and in some cases exceed what manual control can make it do for planar navigation and more dynamic (‘flippy’) behaviors. This is a fairly open ended lab, but the goal is to methodically document the car in any way that might be useful later on.</p><br>
+                                    <h3>Testing</h3>
+                                    <p class="text-left">There are important physical charactersitcs of the car that will be essential for any model of that we intend to implement in future labs.  A more complete model accelerates iterative testing and will simplify future labs.</p>
+                                    <p class="text-left">I started with determining the relevant dimensions with electronic calipers.  First, I removed the plastic top as I expected it would get in the way of future labs.  The wheelbase (front to rear tires) is W = 80mm and the track (left to right tires) is T = 105mm.  The diameter of each tire is D = 77mm, although this may change with loading as the wheels are deformable.</p>
+                                    <p class="text-left">The front and rear axles are equally far (40mm) from the geometric center of the body of the car whose length, width, and height are 119mm, 65mm, and 45mm respectively.  </p>
+                                    <p class="text-left">The battery life lasts about 20 minutes of continuous use involving accelerating, braking, spinning in place, doing tricks, and just moving around in general.  I consider the battery "fully exhausted" when the robot can no motors can no longer overcome the rolling resistance on carpet to move.  Each battery averages 4 hours to charge from dead (4.8V) to fully charged (5.6V)</p>
+                                    <p class="text-left">The performance of the car is dependent on the surface it is driving on, the driving mode (fast or slow mode), and the battery.  On tile and hardwood, the car has no problem accelerating, turning in place, and doing tricks, even on low battery.  However, the car struggles to overcome friction when on carpet.  Even on a full battery, turning in place is not possible so a K-turn maneuver is required to change the heading.</p>
+                                    <p class="text-left">The car can do a few cool stunts when it has enough battery.  By accelerating or decelerating very suddenly, I can flip the car over itself.  I am unable to balance it on two wheels, but I can get it to flip and stay up for an instant.  Additionally, I can somewhat reliably get the car to stop inches infront of a wall starting from full speed.</p>
+                                    <p class="text-left">Here is a video of the car doing several very fast flips at full throttle.</p>
+                                    <p class="text-left">I performed several tests to get a rough estimate of the speed, acceleration, and braking distance.  All tests were performed woth a full battery on the tiled floor where I expect to be running the robot for the remaining labs.  A slow motion camera recorded a stopwatch and several trials the robot driving across the 12" x 12" tiles.  Speed was tested by getting the car up to speed and recording the time for the car to cross 4 tiles (4 feet).  The average speed while in fast and slow mode over 5 trials was 8.85 ft/s (2.69 m/s) and 6.50 ft/s (1.98 m/s) respectively.  Acceleration was tested by recording the time it takes for the car to cross 1 tile, starting from rest and assuming constant acceleration equal to a = 2d/t^2 where d is the distance traveled in time t.  The average acceleration while in fast and slow mode over 5 trials was 20.0 ft/s^2 (6.10 m/s^2) and 6.49 ft/s^2 (1.98 m/s^2) respectively. I was surprised at the amount of repeatability of these tests, although I would get very different numbers if I used a battery close to empty.</p>
+                                    <!--Fast Robots : ECE 4960 - Robot performance and traction testing on low-pile carpet.-->
+                                    <div class="embed-container">
+                                        <iframe src="https://youtu.be/-tvlwy7Hqs4" frameborder="0" allowfullscrenn></iframe>
+                                    </div>
+                                    <!--Fast Robots : ECE 4960 - Performance and balance testing-->
+                                    <div class="embed-container">
+                                        <iframe src="https://youtu.be/VX6inwBH2fs" frameborder="0" allowfullscrenn></iframe>
+                                    </div>
+                                    <!--Fast Robots : ECE 4960 - Cool car tricks-->
+                                    <div class="embed-container">
+                                        <iframe src="https://youtu.be/oNSitK4q3H8" frameborder="0" allowfullscrenn></iframe>
+                                    </div>
+                                    <!--Fast Robots : ECE 4960 - Manual operation brake testing-->
+                                    <div class="embed-container">
+                                        <iframe src="https://youtu.be/_gmS72GifNQ" frameborder="0" allowfullscrenn></iframe>
+                                    </div>
+                                    <!--Fast Robots : ECE 4960 - Manual operation target testing-->
+                                    <div class="embed-container">
+                                        <iframe src="https://youtu.be/DdFMu0o7qcQ" frameborder="0" allowfullscrenn></iframe>
+                                    </div>
+                                    <!--Fast Robots : ECE 4960 - Acceleration testing-->
+                                    <div class="embed-container">
+                                        <iframe src="https://youtu.be/CT3kTQUzG1U" frameborder="0" allowfullscrenn></iframe>
+                                    </div>
+                                    <p class="text-left">I performed another 2 tests for braking. First, I let the car get up to speed in fast mode, then switched to slow mode upon reversing the throttle on both sets of wheels.  Next, I performed the same test, but I left the car get up to speed in slow mode before reversing the throttle.  The first and second tests ranged from 2-3 feet and 1-1.25 feet between initiating braking and coming to rest respectively. The repeatability of the braking tests did not compare to that of the speed and acceleration tests.  The reason for the discrepancy is the difficulty in reversing the throttle at the exact moment the car would begin to cross a marked tile.</p>
+                                    <h3>Simulator Testing</h3>
+                                    <p class="text-left">The simulator will be critical for iterative testing in future labs.  We can use it to quickly test path planning, mapping, and localization tools before implementing them on the real robot.  After being setup in the VM, some tests were performed to check the basic functionality of the simulator.</p>
+                                    <p class="text-left">The robot can be controlled using the keyboard teleoperation tool.  It can vary the linear and angular velocity independently which traces out straight or gracefully curved lines, turn in place, reverse, etc.  The minimum linear and angular velocity is zero and the maximum seems to be unbounded, although it is difficult to test because the robot runs into a wall before reaching maximum speed.</p>
+                                    <img class="img-fluid img-centered" src="assets/img/portfolio/reqFloat.PNG">
+                                    <p class="text-left">Upon striking an obstacle, the robot is replaced with a warning sign and will not move or respond to commands.  It must be moved manually with the cursor before it will continue its moving at its previous linear and angular velocity.  The robot can also be moved with the cursor at any time, not just when it strikes a wall.</p>
+                                    <img class="img-fluid img-centered" src="assets/img/portfolio/reqFloat.PNG">
                                     <button class="btn btn-primary" data-dismiss="modal">
                                         <i class="fas fa-times fa-fw"></i>
                                         Close Window
