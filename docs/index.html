@@ -71,7 +71,7 @@
                             <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
                                 <div class="portfolio-item-caption-content text-center text-white"><i class="fas fa-plus fa-3x"></i></div>
                             </div>
-                            <img class="img-fluid" src="assets/img/portfolio/artemis.jpg" alt="" />
+                            <img class="img-fluid" src="assets/img/portfolio/lab1/artemis.jpg" alt="" />
                             <p>In this intro, I familiarized myself with the Arduino IDE and Ubuntu Virtual Machine we will be using to develop a fast robot.</p>
                         </div>
                     </div>
@@ -93,7 +93,7 @@
                             <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
                                 <div class="portfolio-item-caption-content text-center text-white"><i class="fas fa-plus fa-3x"></i></div>
                             </div>
-                            <img class="img-fluid" src="assets/img/portfolio/car_wBody.jpg" alt="" />
+                            <img class="img-fluid" src="assets/img/portfolio/lab3/car_wBody.jpg" alt="" />
                             <p>For this lab, I got some experience with the limitations of the cars acceleration, traction, battery life, etc.</p>
                         </div>
                     </div>
@@ -105,6 +105,7 @@
                                 <div class="portfolio-item-caption-content text-center text-white"><i class="fas fa-plus fa-3x"></i></div>
                             </div>
                             <img class="img-fluid" src="assets/img/portfolio/game.png" alt="" />
+                            <p>In this lab, I begin controlling the car with the Artemis board.</p>
                         </div>
                     </div>
                     <!-- Portfolio Item 5-->
@@ -231,22 +232,22 @@
                                         <div class="divider-custom-line"></div>
                                     </div>
                                     <!-- Portfolio Modal - Image-->
-                                    <img class="img-fluid rounded mb-5" src="assets/img/portfolio/artemis.jpg" alt="" />
+                                    <img class="img-fluid rounded mb-5" src="assets/img/portfolio/lab1/artemis.jpg" alt="" />
                                     <!-- Portfolio Modal - Text-->
                                     <h3>Objective</h3>
                                     <p class="mb-5">The purpose of this lab is to setup and become familiar with the Arduino IDE and the Artemis board. After this lab, I will be able to program my board, blink the LED, read/write serial messages over USB, display the output from the onboard temperature sensor, measure the loudest frequency recorded by the Pulse Density Microphone, and run the board using a battery instead of my computer.</p>
                                     <p class="mb-5">The first part of lab 1 was simple because I already have the Arduino IDE installed on my computer and am familiar with how these devices work.  I uploaded the “Blink” sketch from the examples folder to ensure that sketches could be uploaded to the Artemis.  From previous experience, I know that it is successful when the RX and TX lights on the Artemis blink rapidly while the sketch is uploading.  To double check that the code was working properly, I changed the timing of the blinking, uploaded the new sketch, and observed the light blinking faster as expected.</p>
-                                    <img class="img-fluid img-centered" src="assets/img/portfolio/blink.PNG">
+                                    <img class="img-fluid img-centered" src="assets/img/portfolio/lab1/blink.PNG">
                                     <p class="mb-5">The “Serial” example worked as expected, parsing inputs to the Artemis and using those inputs to display messages on the Serial Monitor.  I had to change the baud rate to view them properly.</p>
-                                    <img class="img-fluid img-centered" src="assets/img/portfolio/serial.PNG">
+                                    <img class="img-fluid img-centered" src="assets/img/portfolio/lab1/serial.PNG">
                                     <p class="mb-5">The “analogRead” example worked as well, although the functionality of the sketch was not fully realized.  The temperature sensor reported gradually higher temperatures as I held my thumb to the board.  However, the pin being read as an analog input was floating as it was not grounded or connected to an input, as expected.</p>
-                                    <img class="img-fluid img-centered" src="assets/img/portfolio/temp1.PNG">
-                                    <img class="img-fluid img-centered" src="assets/img/portfolio/temp2.PNG">
+                                    <img class="img-fluid img-centered" src="assets/img/portfolio/lab1/temp1.PNG">
+                                    <img class="img-fluid img-centered" src="assets/img/portfolio/lab1/temp2.PNG">
                                     <p class="mb-5">The “microphoneOutput” example sketch also worked as described, returning the frequency of the loudest sound.  When whistling loudly, I could change the output on the serial monitor by changing the pitch of my whistling in a range from 100 to 2500.</p>
-                                    <img class="img-fluid img-centered" src="assets/img/portfolio/mic1.PNG">
-                                    <img class="img-fluid img-centered" src="assets/img/portfolio/mic2.PNG">
+                                    <img class="img-fluid img-centered" src="assets/img/portfolio/lab1/mic1.PNG">
+                                    <img class="img-fluid img-centered" src="assets/img/portfolio/lab1/mic2.PNG">
                                     <p class="mb-5">To test the battery, I inserted an “if” statement to turn on the onboard LED (pin 19) if the loudest frequency was above 2000 and turn it off otherwise.  I also had to set pin 19 as an output in the setup function.  This modification to the sketch worked as expected.  I could whistle a low tune while watching the serial monitor, slowly raise the output above 2000, and watch the LED turn on.</p>
-                                    <img class="img-fluid img-centered" src="assets/img/portfolio/mic3.PNG">
+                                    <img class="img-fluid img-centered" src="assets/img/portfolio/lab1/mic3.PNG">
                                     <p class="mb-5">I also unplugged the Artemis from the USB cable and plugged in the battery.  The power LED turned on, indicating the sketch was probably running.  I tested the sketch with whistling again, this time with no serial monitor to check the frequency.  Again, the LED turned on when I whistled a high enough frequency and turned off when it was below the threshold.</p>
                                     <button class="btn btn-primary" data-dismiss="modal">
                                         <i class="fas fa-times fa-fw"></i>
@@ -285,7 +286,7 @@
                                     <p class="text-left">The Artemis board and a computer are capable of low-latency, moderate-throughput wireless communication via Bluetooth LE. In this lab, you will expand a basic application for wireless communication over a Generic Attribute (GATT) framework on top of robust BLE stacks.</p>
                                     <h3>Ping Your Robot</h3>
                                     <p class="text-left">After getting a reliable bluetooth connection, the round-trip latency of the link was tested.  After changing a few lines in main.py and running it, the VM terminal output the response time for sending messages to the Artemis board over bluetooth.</p>
-                                    <img class="img-fluid img-centered" src="assets/img/portfolio/pongOutput.png">
+                                    <img class="img-fluid img-centered" src="assets/img/portfolio/lab2/pongOutput.png">
                                     <p class="text-left">The latency of the wireless messages was most commonly between 180 and 210 ms, although some bytes were sent and received in as little as 160 ms and as much as 250 ms.</p>
                                     <p class="text-left">To test the latency of a wired serial connection, a short script was written in Arduino and another in Matlab.  The Arduino script waits to receive a 'ping' char over a serial port set at 115200 baud/s before sending a 'pong' char in response.
                                     <br><br><code>
@@ -298,19 +299,19 @@
                                     tic                     %start timer<br>
                                     msg = readline(s);      %wait for response and read it<br>
                                     tResponse(i) = toc;     %stop timer and save<br></code> </p>
-                                    <img class="img-fluid img-centered" src="assets/img/portfolio/pongOutputWired.png">
+                                    <img class="img-fluid img-centered" src="assets/img/portfolio/lab2/pongOutputWired.png">
                                     <p class="text-left">The latency of a wired serial connection over 1000 trials was significantly lower compared to that of the Bluetooth connection.  The round-trip latency for sending a single char and then parsing the response averaged 4ms, though it must be noted that only one char was sent at a time.</p>
                                     <p class="text-left">To check how many bytes are in the data packet, <code>Serial.println(l_Rcvd);</code> was added in the Arduino script after the other print statements.  <code>l_Rcvd</code> is the total length of the packet we are sending in bytes.  It continuously printed 99, indicating the ping-pong message was sending a full packet back and forth every time.</p>
                                     <h3>Requesting a Float</h3>
                                     <p class="text-left">Next, I used the same data structure to request a float with the VM and send a response with the Artemis.  For the VM, I simply uncommented <code>await theRobot.sendCommand(Commands.REQ_FLOAT)</code>.  For the Arduino script, I had to insert a float (I chose pi to 7 significant digits) into <code>res_cmd->data</code> as well as specify <code>res_cmd->command_type</code> and the total number of bytes in the packet (1 command byte + 1 length byte + 4 float bytes = 6 total bytes).</p>
-                                    <img class="img-fluid img-centered" src="assets/img/portfolio/reqFloat.PNG">
+                                    <img class="img-fluid img-centered" src="assets/img/portfolio/lab2/reqFloat.PNG">
                                     <p class="text-left">After running both of these programs, the VM terminal output "3.141592502593994" instead of the float that I sent which was "3.141596".  They are as close as they can be for 4 byte floats without being equal.</p>
                                     <h3>Testing the Data Rate</h3>
                                     <p class="text-left">Last, the data rate was tested by sending 32 and 64 bit integers to the VM.  The data structure was packed with either a uint32 or a uint64 then sent off while keeping track of the time in between.</p>
-                                    <img class="img-fluid img-centered" src="assets/img/portfolio/streamArduino.PNG">
+                                    <img class="img-fluid img-centered" src="assets/img/portfolio/lab2/streamArduino.PNG">
                                     <p class="text-left">In the VM program, I only had to uncomment <code>await theRobot.testByteStream(25)</code>.</p>
-                                    <img class="img-fluid img-centered" src="assets/img/portfolio/streamArduinoHist.png">
-                                    <img class="img-fluid img-centered" src="assets/img/portfolio/streamArduinoHist64.png">
+                                    <img class="img-fluid img-centered" src="assets/img/portfolio/lab2/streamArduinoHist.png">
+                                    <img class="img-fluid img-centered" src="assets/img/portfolio/lab2/streamArduinoHist64.png">
                                     <p class="text-left">The Artemis sent packets averaging about every 10.7ms regardless of if they were uint32 or uint64.</p>
                                     <h3>Conclusion</h3>
                                     <p class="text-left">After completing this lab, I see the role that this bluetooth capability will play as the project progresses.  The latency and data rate of the connection is far too slow for a fast robot to react dynamically using the VM for the majority of its calculations.  For example, I expect that for the inverted pendulum lab to work, the Artemis will have to sense, compute, and actuate 20-100 times per second to achieve closed-loop stability, an update frequency too fast to be doing much computation over bluetooth.  Thus, the Artemis and the VM must work together and compensate for eachothers weaknesses to solve whatever task is issued.</p>
@@ -345,14 +346,14 @@
                                         <div class="divider-custom-line"></div>
                                     </div>
                                     <!-- Portfolio Modal - Image-->
-                                    <img class="img-fluid rounded mb-5" src="assets/img/portfolio/car_wBody.jpg" alt="" />
+                                    <img class="img-fluid rounded mb-5" src="assets/img/portfolio/lab3/car_wBody.jpg" alt="" />
                                     <!-- Portfolio Modal - Text-->
                                     <h3>Objective</h3>
                                     <p class="text-left">Before we start taking the car apart, we can leverage the remote control to familiarize ourselves with the capabilities of the hardware. In later labs we will seek to replicate manual behavior with autonomous control and in some cases exceed what manual control can make it do for planar navigation and more dynamic (‘flippy’) behaviors. This is a fairly open ended lab, but the goal is to methodically document the car in any way that might be useful later on.</p><br>
                                     <h3>Testing</h3>
                                     <p class="text-left">There are important physical charactersitcs of the car that will be essential for any model of that we intend to implement in future labs.  A more complete model accelerates iterative testing and will simplify future labs.</p>
                                     <p class="text-left">I started with determining the relevant dimensions with electronic calipers.  First, I removed the plastic top as I expected it would get in the way of future labs.  The wheelbase (front to rear tires) is W = 80mm and the track (left to right tires) is T = 105mm.  The diameter of each tire is D = 77mm, although this may change with loading as the wheels are deformable.</p>
-                                    <img class="img-fluid img-centered" src="assets/img/portfolio/topDown_carMarked.jpg">
+                                    <img class="img-fluid img-centered" src="assets/img/portfolio/lab3/topDown_carMarked.jpg">
                                     <p class="text-left">The front and rear axles are equally far (40mm) from the geometric center of the body of the car whose length, width, and height are 119mm, 65mm, and 45mm respectively.  </p>
                                     <p class="text-left">The battery life lasts about 20 minutes of continuous use involving accelerating, braking, spinning in place, doing tricks, and just moving around in general.  I consider the battery "fully exhausted" when the robot can no motors can no longer overcome the rolling resistance on carpet to move.  Each battery averages 4 hours to charge from dead (4.8V) to fully charged (5.6V).</p>
                                     <img class="img-fluid img-centered" src="assets/img/portfolio/multimeter.jpg">
@@ -415,9 +416,9 @@
                                     <h3>Simulator Testing</h3>
                                     <p class="text-left">The simulator will be critical for iterative testing in future labs.  We can use it to quickly test path planning, mapping, and localization tools before implementing them on the real robot.  After being setup in the VM, some tests were performed to check the basic functionality of the simulator.</p>
                                     <p class="text-left">The robot can be controlled using the keyboard teleoperation tool.  It can vary the linear and angular velocity independently which traces out straight or gracefully curved lines, turn in place, reverse, etc.  The minimum linear and angular velocity is zero and the maximum seems to be unbounded, although it is difficult to test because the robot runs into a wall before reaching maximum speed.</p>
-                                    <img class="img-fluid img-centered" src="assets/img/portfolio/sim1.PNG">
+                                    <img class="img-fluid img-centered" src="assets/img/portfolio/lab3/sim1.PNG">
                                     <p class="text-left">Upon striking an obstacle, the robot is replaced with a warning sign and will not move or respond to commands.  It must be moved manually with the cursor before it will continue its moving at its previous linear and angular velocity.  The robot can also be moved with the cursor at any time, not just when it strikes a wall.</p>
-                                    <img class="img-fluid img-centered" src="assets/img/portfolio/sim2.PNG">
+                                    <img class="img-fluid img-centered" src="assets/img/portfolio/lab3/sim2.PNG">
                                     <button class="btn btn-primary" data-dismiss="modal">
                                         <i class="fas fa-times fa-fw"></i>
                                         Close Window
@@ -451,7 +452,10 @@
                                     <!-- Portfolio Modal - Image-->
                                     <img class="img-fluid rounded mb-5" src="assets/img/portfolio/game.png" alt="" />
                                     <!-- Portfolio Modal - Text-->
-                                    <p class="mb-5">Coming Soon...</p>
+                                    <h3>Objective</h3>
+                                    <p class="text-left">The purpose of this lab is to change from manual to open loop control of the car. At the end of this lab, the car was able to execute a pre-programmed series of moves, using the Artemis board and the motor driver communicating via i2c interface.</p><br>
+                                    <h3>Assembly</h3>
+                                    <p class="text-left">To begin, I removed the existing circuit board and replaced it with the provided motor driver.  I was able to undo one of the QWIC connectors, feed it through the old hole for the "On" button hole, and reassemble the connector.</p><br>
                                     <button class="btn btn-primary" data-dismiss="modal">
                                         <i class="fas fa-times fa-fw"></i>
                                         Close Window
