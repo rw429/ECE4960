@@ -426,7 +426,7 @@
                                     <p class="text-left">The purpose of this lab is to change from manual to open loop control of the car. At the end of this lab, the car was able to execute a pre-programmed series of moves, using the Artemis board and the motor driver communicating via i2c interface.</p><br>
                                     <h3>Assembly</h3>
                                     <p class="text-left">To begin, I removed the existing circuit board and replaced it with the provided motor driver.  I was able to undo one of the QWIC connectors, feed it through the old hole for the "On" button hole, and reassemble the connector.</p><br>
-                                    <img class="img-fluid img-centered" src="assets/img/portfolio/lab4/oldCircuit.jpg">
+                                    <img class="img-fluid img-centered" src="assets/img/portfolio/lab4/oldCircuit.jpg"><br>
                                     <img class="img-fluid img-centered" src="assets/img/portfolio/lab4/newCircuit.jpg">
                                     <p class="text-left">Before closing up the car, I installed the Serial Control Motor Driver library and uploaded an example sketch to verify that I could control each motor individually.</p><br>
                                     <img class="img-fluid img-centered" src="assets/img/portfolio/lab4/closedCar.jpg">
@@ -445,8 +445,12 @@
                                         <iframe width="560" height="315" src="https://www.youtube.com/embed/q4QOPdmefD8" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                                     </div>
                                     <p class="text-left">Finally, as suggested on CampusWire, the "PSWC" pins on the Artemis can serve as a power switch. I soldered pins to them and have a removable jumber.  Removing/replacing the jumper to turn the Artemis on/off is far more convenient that plugging and unplugging the battery.  Below is one picture with the jumper in place with the car off and one picture with the jumper removed and the car on.</p><br>
-                                    <img class="img-fluid img-centered" src="assets/img/portfolio/lab4/wJumper.jpg">
-                                    <img class="img-fluid img-centered" src="assets/img/portfolio/lab4/noJumper.jpg">
+                                    <img class="img-fluid img-centered" src="assets/img/portfolio/lab4/wJumper.jpg"><br>
+                                    <img class="img-fluid img-centered" src="assets/img/portfolio/lab4/noJumper.jpg"><br>
+                                    <h3>Simulator Testing</h3>
+                                    <p class="text-left">I also did some open-loop testing on the simulator.  The instructions in the lab manual were followed to setup the Jupyter notebook and simulator.  I modified the code to trace a perfect square with the robot.  This was easy because the robot is given precise linear and angular velocity commands.  I made 4 equally straight and long paths interspaced between 4 90 degree turns to form a perfect square and put the robot back where it started.</p><br>
+                                    <img class="img-fluid img-centered" src="assets/img/portfolio/lab4/simCode.PNG"><br>
+                                    <img class="img-fluid img-centered" src="assets/img/portfolio/lab4/sim1.PNG"><br>
                                     <button class="btn btn-primary" data-dismiss="modal">
                                         <i class="fas fa-times fa-fw"></i>
                                         Close Window
