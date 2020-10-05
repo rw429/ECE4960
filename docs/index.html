@@ -104,7 +104,7 @@
                             <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
                                 <div class="portfolio-item-caption-content text-center text-white"><i class="fas fa-plus fa-3x"></i></div>
                             </div>
-                            <img class="img-fluid" src="assets/img/portfolio/game.png" alt="" />
+                            <img class="img-fluid" src="assets/img/portfolio/lab4/assembled.jpg" alt="" />
                             <p>In this lab, I begin controlling the car with the Artemis board.</p>
                         </div>
                     </div>
@@ -450,12 +450,37 @@
                                         <div class="divider-custom-line"></div>
                                     </div>
                                     <!-- Portfolio Modal - Image-->
-                                    <img class="img-fluid rounded mb-5" src="assets/img/portfolio/game.png" alt="" />
+                                    <img class="img-fluid rounded mb-5" src="assets/img/portfolio/lab4/assembled.jpg" alt="" />
                                     <!-- Portfolio Modal - Text-->
                                     <h3>Objective</h3>
                                     <p class="text-left">The purpose of this lab is to change from manual to open loop control of the car. At the end of this lab, the car was able to execute a pre-programmed series of moves, using the Artemis board and the motor driver communicating via i2c interface.</p><br>
                                     <h3>Assembly</h3>
                                     <p class="text-left">To begin, I removed the existing circuit board and replaced it with the provided motor driver.  I was able to undo one of the QWIC connectors, feed it through the old hole for the "On" button hole, and reassemble the connector.</p><br>
+                                    <img class="img-fluid img-centered" src="assets/img/portfolio/lab4/oldCircuit.jpg">
+                                    <img class="img-fluid img-centered" src="assets/img/portfolio/lab4/newCircuit.jpg">
+                                    <p class="text-left">Before closing up the car, I installed the Serial Control Motor Driver library and uploaded an example sketch to verify that I could control each motor individually.</p><br>
+                                    <img class="img-fluid img-centered" src="assets/img/portfolio/lab4/closedCar.jpg">
+                                    <h3>Motor Testing</h3>
+                                    <p class="text-left">First, I wanted to determine the minimum motor speed command that would actually turn the wheels.  I modified the example sketch to set the motor speed to iterate from 0-255, pausing for a half second in between commands and printing the motor speed to the Serial Monitor.  The wheels would overcome friction and begin spinning reliably at 60-65 LSB/ 255.  Both wheels always started spinning withing 1-2 LSB of eachother, indicating that the motor drive trains are very symmetric and will probably drive straight under open-loop control.</p><br>
+                                    <a class="btn btn-primary btn-xl text-uppercase" href="https://youtu.be/oNSitK4q3H8">
+                                        <i class="fa fa-link"></i>
+                                        FWdbck
+                                    </a><br>
+                                    <p class="text-left">It must be noted that this minimum motor speed was determined from rest with no load.  The actual minimum speed command will be higher if the car were driving on the floor with rolling resistance and lower if the wheels were already spinning.</p><br>
+                                    <p class="text-left">I then modified the example sketch to set both wheels in forward drive for one second, pause for one second, then set both wheels in reverse for one second, then pause for another second.  I let the robot run this loop on the tiled floor and observed how straight its trajectory was.</p><br>
+                                    <img class="img-fluid img-centered" src="assets/img/portfolio/lab4/fwdbckTestCode.PNG">
+                                    <a class="btn btn-primary btn-xl text-uppercase" href="https://youtu.be/oNSitK4q3H8">
+                                        <i class="fa fa-link"></i>
+                                        FWdbck
+                                    </a><br>
+                                    <p class="text-left">Next, I modified the example sketch with a sequence of motor speeds and delays.  Ideally, the robot will drive forward, trace out a square, drive back to where it started, then spin in place.  With no feedback to correct itself, achieving this ideal trajectory would be impossible, but I just wanted to test how it turns by itself.</p><br>
+                                    <a class="btn btn-primary btn-xl text-uppercase" href="https://youtu.be/oNSitK4q3H8">
+                                        <i class="fa fa-link"></i>
+                                        FWdbck
+                                    </a><br>
+                                    <p class="text-left">Finally, as suggested on CampusWire, the "PSWC" pins on the Artemis can serve as a power switch. I soldered pins to them and have a removable jumber.  Removing/replacing the jumper to turn the Artemis on/off is far more convenient that plugging and unplugging the battery.  Below is one picture with the jumper in place with the car off and one picture with the jumper removed and the car on.</p><br>
+                                    <img class="img-fluid img-centered" src="assets/img/portfolio/lab4/wJumper.jpg">
+                                    <img class="img-fluid img-centered" src="assets/img/portfolio/lab4/noJumper.jpg">
                                     <button class="btn btn-primary" data-dismiss="modal">
                                         <i class="fas fa-times fa-fw"></i>
                                         Close Window
