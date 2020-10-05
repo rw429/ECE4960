@@ -404,14 +404,10 @@
                                         Manual operation target testing
                                     </a><br>
                                     <p class="text-left">I performed several tests to get a rough estimate of the speed, acceleration, and braking distance.  All tests were performed with a full battery on the tiled floor where I expect to be running the robot for the remaining labs.  A slow motion camera recorded a stopwatch and several trials of the robot driving across the 12" x 12" tiles.  Speed was tested by getting the car up to speed and recording the time for the car to cross 4 tiles (4 feet).  The average speed while in fast and slow mode over 5 trials was 8.85 ft/s (2.69 m/s) and 6.50 ft/s (1.98 m/s) respectively.  Acceleration was tested by recording the time it takes for the car to cross 1 tile, starting from rest and assuming constant acceleration equal to a = 2d/t^2 where d is the distance traveled in time t.  The average acceleration while in fast and slow mode over 5 trials was 20.0 ft/s^2 (6.10 m/s^2) and 6.49 ft/s^2 (1.98 m/s^2) respectively. I have included a video showing how I did the acceleration testing below.  I was surprised at the level of repeatability of these tests, although I would expect very different numbers if I used a battery closer to empty.</p>
-                                    <!--Fast Robots : ECE 4960 - Acceleration testing
+                                    Fast Robots : ECE 4960 - Acceleration testing
                                     <div class="embed-container">
-                                        <iframe width = "560" height = "315"src="https://youtu.be/CT3kTQUzG1U" frameborder="0" allowfullscreen></iframe>
-                                    </div>-->
-                                    <a class="btn btn-primary btn-xl text-uppercase" href="https://youtu.be/CT3kTQUzG1U">
-                                        <i class="fa fa-link"></i>
-                                        Acceleration testing
-                                    </a><br>
+                                        <iframe width="560" height="315" src="https://www.youtube.com/embed/CT3kTQUzG1U" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                    </div>
                                     <p class="text-left">I performed another 2 tests for braking. First, I let the car get up to speed in fast mode, then switched to slow mode upon reversing the throttle on both sets of wheels.  Next, I performed the same test, but I left the car get up to speed in slow mode before reversing the throttle.  The first and second tests ranged from 2-3 feet and 1-1.25 feet between initiating braking and coming to rest respectively. The repeatability of the braking tests did not compare to that of the speed and acceleration tests.  The reason for the discrepancy is the difficulty in reversing the throttle at the exact moment the car would begin to cross a marked tile.</p>
                                     <h3>Simulator Testing</h3>
                                     <p class="text-left">The simulator will be critical for iterative testing in future labs.  We can use it to quickly test path planning, mapping, and localization tools before implementing them on the real robot.  After being setup in the VM, some tests were performed to check the basic functionality of the simulator.</p>
