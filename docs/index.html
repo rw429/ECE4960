@@ -72,7 +72,6 @@
                                 <div class="portfolio-item-caption-content text-center text-white"><i class="fas fa-plus fa-3x"></i></div>
                             </div>
                             <img class="img-fluid" src="assets/img/portfolio/lab1/artemis.jpg" alt="" />
-                            <p>In this intro, I familiarized myself with the Arduino IDE and Ubuntu Virtual Machine we will be using to develop a fast robot.</p>
                         </div>
                     </div>
                     <!-- Portfolio Item 2-->
@@ -83,7 +82,6 @@
                                 <div class="portfolio-item-caption-content text-center text-white"><i class="fas fa-plus fa-3x"></i></div>
                             </div>
                             <img class="img-fluid" src="assets/img/portfolio/cake.png" alt="" />
-                            <p>In this lab, I setup the Artemis board and Virtual Machine to achieve low-latency, moderate-throughput wireless communication via Bluetooth LE.</p>
                         </div>
                     </div>
                     <!-- Portfolio Item 3-->
@@ -94,7 +92,6 @@
                                 <div class="portfolio-item-caption-content text-center text-white"><i class="fas fa-plus fa-3x"></i></div>
                             </div>
                             <img class="img-fluid" src="assets/img/portfolio/lab3/car_wBody.jpg" alt="" />
-                            <p>For this lab, I got some experience with the limitations of the cars acceleration, traction, battery life, etc.</p>
                         </div>
                     </div>
                     <!-- Portfolio Item 4-->
@@ -105,7 +102,6 @@
                                 <div class="portfolio-item-caption-content text-center text-white"><i class="fas fa-plus fa-3x"></i></div>
                             </div>
                             <img class="img-fluid" src="assets/img/portfolio/lab4/assembled.jpg" alt="" />
-                            <p>In this lab, I begin controlling the car with the Artemis board.</p>
                         </div>
                     </div>
                     <!-- Portfolio Item 5-->
@@ -115,7 +111,7 @@
                             <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
                                 <div class="portfolio-item-caption-content text-center text-white"><i class="fas fa-plus fa-3x"></i></div>
                             </div>
-                            <img class="img-fluid" src="assets/img/portfolio/safe.png" alt="" />
+                            <img class="img-fluid" src="assets/img/portfolio/lab5/robot.jpg" alt="" />
                         </div>
                     </div>
                     <!-- Portfolio Item 6-->
@@ -482,9 +478,39 @@
                                         <div class="divider-custom-line"></div>
                                     </div>
                                     <!-- Portfolio Modal - Image-->
-                                    <img class="img-fluid rounded mb-5" src="assets/img/portfolio/safe.png" alt="" />
+                                    <img class="img-fluid rounded mb-5" src="assets/img/portfolio/lab5/robot.jpg" alt="" />
                                     <!-- Portfolio Modal - Text-->
-                                    <p class="mb-5">Coming Soon...</p>
+                                    <h3>Objective</h3>
+                                    <p class="text-left">The purpose of this lab is to enable the robot to perform obstacle avoidance. To do this, we first need to equip the robot with distance sensors - the further the robot can see and the more it can trust a sensor reading, the faster it is able to drive. Once you have your sensors working, you will mount them on your robot and attempt fast motion around your room without crashing into obstacles. You will use the VM simulator to implement similar behavior.</p><br>
+                                    <h3>Proximity Sensor</h3>
+                                    <p class="text-left">First, I installed the library and opened a few example sketches.  The I2C address matched, so I began taking readings immediately.  The sensor measures the light intensity of the returning IR beam it projected into the environment.  Consequentially, it reacts very differently depending on the texture and color of the surface it is seeing.</p><br>
+                                    <img class="img-fluid img-centered" src="assets/img/portfolio/lab5/proxTest.jpg"><br>
+                                    <p class="text-left">I performed some simple tests to observe how well the sensor could be used as a distance sensor.  I recorded the sensor measurements for 7 different materials at 3 fixed distances each.  When comparing measurements at the same distance, glossy, smooth, lighter colored materials like white paper returned the IR light the most while dull, darker materials returned it the least.  Over the 3 distances for each material, the relationship between sensor measurement and distance was more linear for the dull, darker materials than for the glossy, lighter ones.  I also tested the sensor in a dark room, and while shining a flashlight at it, but it had no noticeable effect.</p><br>
+                                    <img class="img-fluid img-centered" src="assets/img/portfolio/lab5/proxTestData.PNG"><br>
+                                    <p class="text-left">The update frequency of this sensor was very quick, coming in at less than one millisecond.  However, the sensor performed poorly for distances further than 200mm and was very noisy for distances under 50mm.  For this reason, I decided against using this sensor for this lab.  At high speeds, the robot would have too much inertia to begin slowing down with 200mm to an object in front of it.  Another reason was the non-linearity of the sensor measurement - distance relationship and the variability of the measurement with respect to material.</p><br>
+                                    <p class="text-left">Despite its drawbacks, I see potential in this sensor.  If I attach pieces of white tape radially to the inside of one of the black tires, I may be able to use it as an optical encoder.  There is significant need for a speed sensor and this may suffice, but this will be investigated further in the next lab.</p><br>
+                                    <h3>Time of Flight (ToF) Sensor</h3>
+                                    <p class="text-left">I followed a similar procedure to test the ToF sensor.  Interestingly, the I2C address on the datasheet (0x52) did not match what the I2C scanner had found (0x29).  Nontheless, I used the scanner address and the sensor worked with no issues.  I soon discovered the range and dependability of this sensor were impressive.</p><br>
+                                    <p class="text-left">My range tests for the ToF sensor were performed over 1-5 ft and with only 3 materials.  The sensor was accurate to within an inch and did not depend on the type of material or lighting conditions.  It has an operating range of ~5mm to 6m and updates every 100ms, although I changed this to 50ms for a more reactive robot.  I also tested it with the "Status and Rate" Example Sketch which gave indicators for the quality of the measurement.  I waved a notebook infront of it quickly to simulate a fast moving object, but the sensor rarely returned an invalid measurement.</p><br>
+                                    <img class="img-fluid img-centered" src="assets/img/portfolio/lab5/TOFTestData.PNG"><br>
+                                    <p class="text-left">I also performed the calibration procedure using the example sketch.  The measurement offset was 11mm.  I decided to use this sensor as the primary range finder for the robot because its range, update frequency, and accuracy were suitable obstacle avoidance.</p><br>
+                                    <h3>Obstacle Avoidance</h3>
+                                    <p class="text-left">After sensor testing was complete, I mounted a small piece of cardboard to the front of the robot with hot glue and tape, then taped both sensors to the front and wired them to the motor driver and the Artemis.</p><br>
+                                    <p class="text-left">The sketch for obstacle avoidance was broken into 5 simple sections: initialize, sense, filter, decide, actuate.</p><br>
+                                    <p class="text-left">I combined code snippets from examples and initialized the global variables and constants I would need to decide when an obstacle was too close, how fast to drive, how far away an obstacle was, etc. </p><br>
+                                    <img class="img-fluid img-centered" src="assets/img/portfolio/lab5/code1.PNG"><br>
+                                    <p class="text-left">I continually took ToF measurements without clearing the interrupt to save time because it had no noticeable effect on the measurements.  When the measurement was ready, I subtracted the offset from the raw measurement and save it in <code>measToF</code>.  Then, I filtered the measurements using a complimentary filter.  <code>alpha</code> was set to 0.25 because the measurements were very reliable.  In hindsight, I think the system would work without filtering the data.</p><br>
+                                    <img class="img-fluid img-centered" src="assets/img/portfolio/lab5/code2.PNG"><br>
+                                    <p class="text-left">Once the filtered range dropped below <code>closeEnough</code>, the motors were set to turn right.  Otherwise, they were set to move straight ahead.  I tested some methods of avoidance where I would use <code>delay()</code> to perform braking and turning, but none worked as well at higher speeds as the simple approach I settled on.</p><br>
+                                    <img class="img-fluid img-centered" src="assets/img/portfolio/lab5/code3.PNG"><br>
+                                    <p class="text-left">For testing obstacle avoidance, I gradually increased the speed of the robot which presented new problems.  At high speeds, the inertia of the robot was too much for the robot to turn to the right before hitting an obstacle.  I solved this by increasing <code>closeEnough</code>, although it created problems when the robot was in an area where most obstacles around it were closer than this threshold and it would just turn in place.  All told, the final version of this code drove the motors at full speed and usually avoided hitting most obstacles.  To make it better, I would implement the optical encoder with the IR sensor I mentioned and vary <code>closeEnough</code> with the speed of the robot.</p><br>
+                                    <div class="embed-container">
+                                        <iframe width="560" height="315" src="https://www.youtube.com/embed/9iG7R-XIPAU" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                    </div><br>
+                                    <h3>Obstacle Avoidance in the Simulator</h3>
+                                    <p class="text-left">I used a similar code structure for the simulator.  The simulated range sensor measurements had no noise, so the filtering step was unnecessary and was not included.  The robot needs to turn enough so that when it is done turning and continues forward, its trajectory will encounter an object withing <code>closeEnough</code> before the side of the robot hits a wall.  The robot is a small square, about 0.3m per side.</p><br>
+                                    <img class="img-fluid img-centered" src="assets/img/portfolio/lab5/code4.PNG"><br>
+                                    <p class="text-left">I noticed that the robot will hit a wall and stop when it moves along the wall at a shallow angle.  I added a delay after the turn command to lengthen the minimum turn angle when it sees an obstacle.  This did not solve the problem, but certainly helped.  I'm not sure how to implement a perfect obstacle avoidance algorithm without additional sensors.</p><br>
                                     <button class="btn btn-primary" data-dismiss="modal">
                                         <i class="fas fa-times fa-fw"></i>
                                         Close Window
