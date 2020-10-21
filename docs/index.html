@@ -121,7 +121,7 @@
                             <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
                                 <div class="portfolio-item-caption-content text-center text-white"><i class="fas fa-plus fa-3x"></i></div>
                             </div>
-                            <img class="img-fluid" src="assets/img/portfolio/submarine.png" alt="" />
+                            <img class="img-fluid" src="assets/img/portfolio/lab6/robotSquare.jpg" alt="" />
                         </div>
                     </div>
                 </div>
@@ -543,7 +543,7 @@
                                         <div class="divider-custom-line"></div>
                                     </div>
                                     <!-- Portfolio Modal - Image-->
-                                    <img class="img-fluid rounded mb-5" src="assets/img/portfolio/submarine.png" alt="" />
+                                    <img class="img-fluid rounded mb-5" src="assets/img/portfolio/lab6/robotSquare.jpg" alt="" />
                                     <!-- Portfolio Modal - Text-->
                                     <h3>Objective</h3>
                                     <p class="text-left">The purpose of this lab is to setup your IMU (to enable your robot to estimate its orientation). Note that there are several ways to compute these, through this lab you should understand the trade offs of each approach. Once the IMU is implemented, you will mount it on your robot and attempt to do PID control on the rotational speed. Enabling reliable rotation will help you implement navigation and localization in labs 8-9; enabling reliable and slow rotation will help you do TOF rotational scans to compute a map in lab 7.</p><br>
@@ -561,6 +561,7 @@
                                     <h3>Open-Loop Control</h3>
                                     <p class="text-left">Before implementing feedback control, I performed some open-loop testing to get a better feel for how the robot spins.</p><br>
                                     <p class="text-left">Although I was supposed to use bluetooth for wireless communication, I had several issues with the code and the VM.  I found a workaround by using a telemetry radio connected to the other UART on the Artemis.  This setup allowed me to send messages over <code>Serial1</code> to my desktop where the ground module of the telemetry radio was plugged in.  The serial messages were parsed by Matlab and contained the estimated yaw rate from the gyroscope and the current motor command.</p><br>
+                                    <img class="img-fluid img-centered" src="assets/img/portfolio/lab6/robotAntennas.jpg">
                                     <p class="text-left">The open-loop script made the motors spin in opposite directions at increasing speed until maximum speed, then decreasing speed until the robot stopped.  By observing the response, I was able to determine the deadband (the motor value below which the motors don't spin) of each motor, hysteresis (the deadband may depend on if the motor command is increasing or decreasing), and the max rotational speed.</p><br>
                                     <iframe width="560" height="315" src="https://www.youtube.com/embed/dRKkWFkehtk" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                                     <img class="img-fluid img-centered" src="assets/img/portfolio/lab6/rampResponse.png"><br>
