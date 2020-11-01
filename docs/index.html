@@ -141,7 +141,7 @@
                             <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
                                 <div class="portfolio-item-caption-content text-center text-white"><i class="fas fa-plus fa-3x"></i></div>
                             </div>
-                            <img class="img-fluid" src="assets/img/portfolio/game.png" alt="" />
+                            <img class="img-fluid" src="assets/img/portfolio/lab8/Bayes.PNG" alt="" />
                         </div>
                     </div>
                     <!-- Portfolio Item 9-->
@@ -593,7 +593,7 @@
                             <div class="row justify-content-center">
                                 <div class="col-lg-8">
                                     <!-- Portfolio Modal - Title-->
-                                    <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0" id="portfolioModal6Label">Lab 7: Mapping</h2>
+                                    <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0" id="portfolioModal7Label">Lab 7: Mapping</h2>
                                     <!-- Icon Divider-->
                                     <div class="divider-custom">
                                         <div class="divider-custom-line"></div>
@@ -656,7 +656,7 @@
                             <div class="row justify-content-center">
                                 <div class="col-lg-8">
                                     <!-- Portfolio Modal - Title-->
-                                    <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0" id="portfolioModal6Label">Lab 8: Localization in Simulation</h2>
+                                    <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0" id="portfolioModal8Label">Lab 8: Localization in Simulation</h2>
                                     <!-- Icon Divider-->
                                     <div class="divider-custom">
                                         <div class="divider-custom-line"></div>
@@ -664,8 +664,32 @@
                                         <div class="divider-custom-line"></div>
                                     </div>
                                     <!-- Portfolio Modal - Image-->
-                                    <img class="img-fluid rounded mb-5" src="assets/img/portfolio/lab6/robotSquare.jpg" alt="" />
+                                    <img class="img-fluid rounded mb-5" src="assets/img/portfolio/lab8/Bayes.PNG" alt="" />
                                     <!-- Portfolio Modal - Text-->
+                                    <h3>Objective</h3>
+                                    <p class="text-left">The purpose of this lab is to implement the Bayesian Grid Localization algorithm we've been discussing in lecture.  The implementation in this lab is a precursor to the localization algorithm that will be used on the physical robot in the next lab.</p><br>
+                                    <h3>Implementation</h3>
+                                    <p class="text-left">Programming the Bayes filter was simple considering the general structure was already laid out in the previous lab.</p><br>
+                                    <p class="text-left">For <code>compute_control</code>, I only had to make a small modification to my previous implementation for it to work.  The angles for turning were not bounded to [-180,180) degrees which could have led to problems around the discontinuity.  I used <code>.normalize_angles()</code> to make it more robust.</p><br>
+                                    <img class="img-fluid img-centered" src="assets/img/portfolio/lab8/code1.PNG"><br>
+                                    <p class="text-left"><code>odom_motion_model</code> didn't require any modifications.</p><br>
+                                    <img class="img-fluid img-centered" src="assets/img/portfolio/lab8/code2.PNG"><br>
+                                    <p class="text-left">For <code>prediction_step</code>, I had the general structure correct, but misunderstood what the inputs and outputs were supposed to be.  We need the previous and current pose from odometry to calculate what control inputs were used over the last timestep using <code>compute_control</code>.  We also need the pose for which we were most confident of in the last timestep, <code>best_prev_belief</code>.  The prediction probability of each cell in <code>bel_bar</code> was updated using <code>odom_motion_model</code> to the probability that we got to each cell's position from <code>best_prev_belief</code> using the control input we used.  Poses around the pose that the robot arrived at from <code>best_prev_belief</code> using the control inputs have high probability in comparison to poses on the other side of the environment.</p><br>
+                                    <img class="img-fluid img-centered" src="assets/img/portfolio/lab8/code3.PNG"><br>
+                                    <p class="text-left"><code>update_step</code> had a similar structure to prediction step. For each of the 18 measurements, we use the actual measurement<code>z_actual</code> to compare to the measurement from each cell.  The belief of pose <code>bel</code> is updated by multiplying the product of the array of measurement probabilities with the <code>bel_bar</code> from the corresponding cell.  Thus, if the actual measurement and the expected measurement are similar AND the <code>bel_bar</code> from that cell is high, then that pose gets high probability.</p><br>
+                                    <img class="img-fluid img-centered" src="assets/img/portfolio/lab8/code4.PNG"><br>
+                                    <p class="text-left">I added a probability tolerance check to reduce computation time.  If any of the elements in the measurement probability array are less than 1e-40, the <code>bel</code> of that cell is set to zero.  The tolerance was chosen heuristically to reduce computation time without ruling out any highly probable poses.  Typically, the algorithm will only have to actually calculate the <code>bel</code> for 100-400 cells instead of the full 7200.</p><br>
+                                    <h3>Performance</h3>
+                                    <p class="text-left">The filter was able to reliably track the trajectory of the robot.  The entire trajectory took a little under 7 minutes, the extension due to computation time. It took a little over a second to compute each prediction step and a little less than half a second to compute each update step.  The figures below are of the robot in the simulator and the plotter at 3 timesteps in the trajectory.</p><br>
+                                    <img class="img-fluid img-centered" src="assets/img/portfolio/lab8/sim1.PNG"><br>
+                                    <img class="img-fluid img-centered" src="assets/img/portfolio/lab8/plotter1.PNG"><br>
+                                    <p class="text-left">The actual trajectory is in green, the odometry estimate in blue, and the Bayes filter in yellow.</p><br>
+                                    <img class="img-fluid img-centered" src="assets/img/portfolio/lab8/sim2.PNG"><br>
+                                    <img class="img-fluid img-centered" src="assets/img/portfolio/lab8/plotter2.PNG"><br>
+                                    <p class="text-left">The prediction step belief distribution is shown as shaded cells where the lighter cells have higer probability of the robot being there.  Occasionally, the prediction is completely off due to extremely noisy odometry information.  However, the filter could usually rely on the sensor measurements to retain an acceptable pose estimate.</p><br>
+                                    <img class="img-fluid img-centered" src="assets/img/portfolio/lab8/sim3.PNG"><br>
+                                    <img class="img-fluid img-centered" src="assets/img/portfolio/lab8/plotter3.PNG"><br>
+                                    <p class="text-left">Over several trials, the filter was able to reliably track the trajectory of the robot with few deviations.</p><br>
                                     <button class="btn btn-primary" data-dismiss="modal">
                                         <i class="fas fa-times fa-fw"></i>
                                         Close Window
