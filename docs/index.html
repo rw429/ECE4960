@@ -722,6 +722,20 @@
                                     </div>
                                     <!-- Portfolio Modal - Image-->
                                     <img class="img-fluid rounded mb-5" src="assets/img/portfolio/lab6/robotSquare.jpg" alt="" />
+                                    <h3>Objective</h3>
+                                    <p class="text-left">In the lab, I implemented the full Bayes filter that we have been working on.  This required devloping interfaces between several modules and proved challenging.</p><br>
+                                    <h3>Setup</h3>
+                                    <p class="text-left">I began with writing a new Arduino sketch to control the robot and communicate with the VM.  Using the example bluetooth sketch as the skeleton, I developed functionality to receive commands from the VM over bluetooth and send data back upon request.</p><br>
+                                    <p class="text-left">Upon receiving <code>REQUEST_SCAN</code>, the robot would drive in a counter-clockwise circle at 120 deg/s while recording ToF measurements (as in the previous labs).  The measurements divided into 18 cells over the 360 degree scan (20 deg per cell) where each cell contained the average of all the ToF measurements corresponding to those 20 degrees.  After completing one circle, the robot sent the 18 element array back to the VM.</p><br>
+                                    <img class="img-fluid img-centered" src="assets/img/portfolio/lab9/scanCode.PNG"><br>
+                                    <p class="text-left">For this lab, I used the proximity sensor as an encoder to keep track of how far the robot moves in straight lines.  The <code>Int</code> pin on the proximity sensor was programmed to change when the proximity reading changed enough.  I painted opposite quarters of the wheel with white acrylic paint to give contrast for the sensor to pick up.  Upon receiving <code>REQUEST_ENCODER</code>, the robot would send the current count of the encoder to the VM which was an indication of how far the robot moved.  I also integrated the accelerometer data (with a low-end cutoff to reduce drift) to fulfill the same role and for comparison.</p><br>
+                                    <img class="img-fluid img-centered" src="assets/img/portfolio/lab9/encoderCode.PNG"><br>
+                                    <p class="text-left">I also included a simple movement function.</p><br>
+                                    <img class="img-fluid img-centered" src="assets/img/portfolio/lab9/move.PNG"><br>
+                                    <h3>Simple Localization</h3>
+                                    <p class="text-left">I was able to get the Bluetooth working in the Jupyter notebook to some extent.  I had to modify several of the files provided to us in Lab 9.  I was able to send commands to the robot and read back data, but I couldn't get it working in any of the actual functions.  I spent several days on this but ran into too many issues interfacing the synchronous and asyncronous parts of the code, Bluetooth reliability, and the general structuring the filter, among other things.</p><br>
+                                    <img class="img-fluid img-centered" src="assets/img/portfolio/lab9/map.PNG"><br>
+                                    <p class="text-left">Since I was able to manually send commands, I performed an observation loop and manually fed that data into the first step of the Bayes filter.  The robot was actually located around (1,2).  After running the update step, the belief was highest at (-0.1,2.1).  After this, I couldn't get the Bluetooth to connect anymore even though I'd hadn't had issues with it in a while.</p><br>
                                     <!-- Portfolio Modal - Text-->
                                     <button class="btn btn-primary" data-dismiss="modal">
                                         <i class="fas fa-times fa-fw"></i>
