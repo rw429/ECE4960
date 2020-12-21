@@ -174,6 +174,16 @@
                             <img class="img-fluid" src="assets/img/portfolio/lab11/sim.PNG" alt="" />
                         </div>
                     </div>
+                    <!-- Portfolio Item 12-->
+                    <div class="col-md-6 col-lg-4">
+                        <div class="portfolio-item mx-auto" data-toggle="modal" data-target="#portfolioModal12">
+                            <h2 class="text-warning">12: LQG on the Inverted Pendulum on a Cart</h2>
+                            <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
+                                <div class="portfolio-item-caption-content text-center text-white"><i class="fas fa-plus fa-3x"></i></div>
+                            </div>
+                            <img class="img-fluid" src="assets/img/portfolio/lab12/sim.PNG" alt="" />
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -921,6 +931,71 @@
                 </div>
             </div>
         </div>        
+        <!-- Portfolio Modal 12-->
+        <div class="portfolio-modal modal fade" id="portfolioModal12" tabindex="-1" role="dialog" aria-labelledby="portfolioModal12Label" aria-hidden="true">
+            <div class="modal-dialog modal-xl" role="document">
+                <div class="modal-content">
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true"><i class="fas fa-times"></i></span>
+                    </button>
+                    <div class="modal-body text-center">
+                        <div class="container">
+                            <div class="row justify-content-center">
+                                <div class="col-lg-8">
+                                    <!-- Portfolio Modal - Title-->
+                                    <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0" id="portfolioModal12Label">Lab 12: LQG on the Inverted Pendulum on a Cart</h2>
+                                    <!-- Icon Divider-->
+                                    <div class="divider-custom">
+                                        <div class="divider-custom-line"></div>
+                                        <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+                                        <div class="divider-custom-line"></div>
+                                    </div>
+                                    <!-- Portfolio Modal - Image-->
+                                    <img class="img-fluid rounded mb-5" src="assets/img/portfolio/lab12/sim.PNG" alt="" />
+                                    <h3>Objective</h3>
+                                    <p class="text-left">In the lab, I familiarized myself with the Kalman filter by using it to estimate the state of the inverted pendulum and react using state feedback.</p><br>
+                                    <h3>The Kalman Filter</h3>
+                                    <p class="text-left">We calculate new A and B matrices for the Kalman Filter because we may not have a perfect model of the system.</p><br>
+                                    <p class="text-left">We can see which states we are measuring directly by looking at the C matrix.  The C matrix is a vector of 3 zeros and a 1 in the last position, meaning that our observation is the angular velocity, the last element in the state vector.  All other states are being inferred from the dynamics of the A and B matrices.</p><br>
+                                    <p class="text-left">After running <code>runSimulation.py</code>, we can observe the animation of the inverted pendulum and see plots of comparisons between the actual states of the cart and the estimated states from the kalman filter.  Without adjusting anything, the Kalman filter estimates the states perfectly because we are simulating a nearly perfect system.</p><br>
+                                    <img class="img-fluid rounded mb-5" src="assets/img/portfolio/lab12/KF1.PNG" alt="" />
+                                    <p class="text-left">After printing <code>control.obsv(A,C)</code> (shown below), we can see in the output that the matrix is not full rank because the first column is all zeros.  This implies that the full state is unobservable. We can see that this is because there is no way for the filter to correct for an initial error in the position, the first state.</p><br>
+                                    <img class="img-fluid rounded mb-5" src="assets/img/portfolio/lab12/controllabilityMat.PNG" alt="" />
+                                    <p class="text-left">In the A matrix, the change in the first and third states (position and angle) are only dependent on the second and fourth states (velocity and angular velocity).  Since we only measure the angular velocity (C = [0 0 0 1]), we can only infer about the position of the cart and its angle.  However, we can correct for a initial error in the estimate for angle, but not position.  Below is a figure demonstrating this.  An initial error of +/- 0.2 is applied to all states, and all states but position recover within a half a second, while the position estimate retains its initial error.</p><br>
+                                    <img class="img-fluid rounded mb-5" src="assets/img/portfolio/lab12/KF2.PNG" alt="" />
+                                    <p class="text-left">To further demonstrate this phenomenon, I tried to plot the uncertainty in each state over time.  The uncertainty for each state is represented by the diagonal of the covariance matrix.  I couldn't get it to look how I wanted for the rest of the lab, but you can still see the uncertainty in position grows over time while the uncertainty for all other states does not change much past 1 second.</p><br>
+                                    <img class="img-fluid rounded mb-5" src="assets/img/portfolio/lab12/sig1.PNG" alt="" />
+                                    <h3>Introducing Imperfections</h3>
+                                    <p class="text-left">I introduced each non-linearity and imperfection individually before trying them all together.</p><br>
+                                    <p class="text-left">As before, I introduced errors in the initial estimate of the kalman filter.  This time, I introduced an error of +0.4 one state at a time to see how sensitive each was.  Position errors had little effect on the stability of the cart and other states.  Velocity errors had little impact on the stability of the cart, but had a significant effect on the angle and position estimates.  Within 2 seconds, the velocity and angle errors were corrected, but the position error persisted as expected.  The plots of these two trials are shown below.</p><br>
+                                    <img class="img-fluid rounded mb-5" src="assets/img/portfolio/lab12/posErr.PNG" alt="" />
+                                    <img class="img-fluid rounded mb-5" src="assets/img/portfolio/lab12/velErr.PNG" alt="" />
+                                    <p class="text-left">Angle errors had the largest impact on the stability of the cart because the cart tried to correct for an error that didn't exist.  It took less than a second to correct this error and had little effect on the estimates of other states.  Angular velocity errors had the least effect overall because they are the only state that is being measured directly.  The error  was corrected almost immediately.</p><br>
+                                    <img class="img-fluid rounded mb-5" src="assets/img/portfolio/lab12/angErr.PNG" alt="" />
+                                    <img class="img-fluid rounded mb-5" src="assets/img/portfolio/lab12/angVelErr.PNG" alt="" />
+                                    <p class="text-left">Next, I introduced deadband and saturation values into the dynamics.  I chose 0.5 and 5 to be the values because I figured the real robot had about 100 values to write to the motors that actually did something (150-255 LSB). I expected the cart to oscillate fiercely about its reference values and it did exactly that.  The kalman filter still successfully tracked all of the states, but I noticed small errors in the unmeasured states.</p><br>
+                                    <img class="img-fluid rounded mb-5" src="assets/img/portfolio/lab12/KF3.PNG" alt="" />
+                                    <p class="text-left">Next, I introduced sensor and process noise.  For sensor noise, I decided that adding random gaussian noise with a standard deviation of 0.05 rad/s (about 3 deg/s) would be approriate judging from the noise level of the gyroscopes we used in class.  I added in the same amount of noise into the dynamics (adjusted <code>dydt</code> by <code>np.random.randn()*0.05</code>) as process noise.  After seeing the animation, I didn't notice a difference.  However, the plots clearly show the kalman filter being affected by the noise.  The estimate for angle and angular velocity is railing between +/- 5 degrees and degrees/s.  Luckily, the controller is robust enough to ignore this high frequency noise.</p><br>
+                                    <img class="img-fluid rounded mb-5" src="assets/img/portfolio/lab12/KF4.PNG" alt="" />
+                                    <p class="text-left">Next, tried adjusting a few elements of the A and B matrices.  I only adjusted non-zero elements in the second and fourth row of the A and B matrices because those were elements of the model that are dependent on measurable parameters or simplifying assumptions.  I randomly added or subtracted 10% to each of the 6 non-zero values because that seemed like a reasonable error for measuring some parameters.  This effect was noticeable, but not drastic.  The angle error was most affected.  I continued increasing the percent error until the kalman filter failed when the terms were off by more than 40%.</p><br>
+                                    <img class="img-fluid rounded mb-5" src="assets/img/portfolio/lab12/KF5.PNG" alt="" />
+                                    <p class="text-left">Last, I tried reducing the update frequency of the kalman filter and the controller.  If I were implementing this on the real robot, I would want my controller and kalman filter running as slow as 25 Hz (40 ms looptime, offhand).  This did not seem to have much effect on the animation, but after looking at the plots, I can see its effect in the angle estimate.  Any slower than 15 Hz and the cart could no longer stabilize the pandulum.</p><br>
+                                    <img class="img-fluid rounded mb-5" src="assets/img/portfolio/lab12/KF6.PNG" alt="" />
+                                    <p class="text-left">Finally, I tried implementing all of these imperfections (initial state error, saturation and deadband, measurement and process noise, parameter errors, lower update frequency) into the simulation and seeing how the kalman filter reacted.  Without tuning the kalman filter, the LQG was still able to stabilize the cart, but only just barely.  It was shaking back and forth violently and did not smoothly track the reference position.</p><br>
+                                    <img class="img-fluid rounded mb-5" src="assets/img/portfolio/lab12/KF7.PNG" alt="" />
+                                    <p class="text-left">Afterwards, I individually increased the effects of each of the imperfections by just a little and saw that most increases made the cart unstable (raising the deadband, increasing parameter errors, and decreasing the update frequency).  This indicated that the cart was very close to instability.  After seeing this simulation, I don't believe that the robot would be able to stabilize itself.  First, some of the choices for the amount of imperfection I introduced have been optimistic and would have a greater effect on the actual robot.  Additionally, there are some imperfections that this simulator doesn't even consider.  In my opinion, one of the biggest contributors would be that the noise the IMU experiences is dependent on how the robot is moving and this would have a great effect on the Kalman filter's efficacy.  Another would be that the simulation is only a 2 degree of freedom system while the robot has a full 6 degrees of freedom.</p><br>
+                                    <!-- Portfolio Modal - Text-->
+                                    <button class="btn btn-primary" data-dismiss="modal">
+                                        <i class="fas fa-times fa-fw"></i>
+                                        Close Window
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>  
         <!-- Bootstrap core JS-->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js"></script>
